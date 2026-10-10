@@ -10,9 +10,9 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { BrandLockup, Wordmark } from "@/components/logo";
+import { Wordmark } from "@/components/logo";
 import { useReveal as useSharedReveal } from "@/lib/use-reveal";
-import { AuthButton, useAuthEntry } from "@/components/auth-entry";
+import { ACCESS_HREF, RequestAccessButton } from "@/components/request-access";
 
 /* -----------------------------------------------------------
  * Ordo — Editorial Landing
@@ -31,7 +31,7 @@ const STATS = [
 const PIPELINE = [
   {
     n: "01",
-    label: "Ingest",
+    label: "Import",
     body: "Upload departments, halls, classes, students. Validate, lock.",
     detail: "CSV · strict schema",
   },
@@ -68,7 +68,7 @@ const FAQS = [
   },
   {
     q: "What happens after a generation run?",
-    a: "Ingestion is locked for that exam session. The generated artifacts (timetable, distribution, allocation, broadsheet) are versioned together so any later report can be reproduced from the same source of truth.",
+    a: "Imported data is locked for that exam session. The generated artifacts (timetable, distribution, allocation, broadsheet) are versioned together so any later report can be reproduced from the same source of truth.",
   },
   {
     q: "Can a department override a seat assignment?",
@@ -401,7 +401,6 @@ function LiveStatus() {
 }
 
 export default function LandingPage() {
-  const entry = useAuthEntry();
   useReveal();
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground antialiased">
@@ -412,7 +411,7 @@ export default function LandingPage() {
             to="/"
             className="flex items-center"
           >
-            <BrandLockup size="lg" />
+            <Wordmark size="lg" />
           </Link>
 
           <nav className="hidden items-center gap-9 text-[14px] text-muted-foreground md:flex">
@@ -435,7 +434,7 @@ export default function LandingPage() {
               <LiveStatus />
             </span>
             <ThemeToggle iconOnly />
-            <AuthButton size="default" />
+            <RequestAccessButton size="default" />
           </div>
         </div>
       </header>
@@ -502,11 +501,11 @@ export default function LandingPage() {
 
                 <div className="mt-10 flex flex-wrap items-center gap-4">
                   <Button
-                    render={<a href={entry.href} />}
+                    render={<a href={ACCESS_HREF} />}
                     size="lg"
                     variant="brand"
                   >
-                    Open the dashboard
+                    Request access
                     <ArrowRight data-icon="inline-end" strokeWidth={2.25} />
                   </Button>
                   <Link
@@ -565,7 +564,7 @@ export default function LandingPage() {
                     </div>
                     <ol className="space-y-3.5">
                       {[
-                        { name: "Ingest", dur: "-", state: "lock", pct: 100 },
+                        { name: "Import", dur: "-", state: "lock", pct: 100 },
                         { name: "Timetable", dur: "14s", state: "ok", pct: 100 },
                         {
                           name: "Distribution",
@@ -889,14 +888,14 @@ export default function LandingPage() {
                 </div>
               </article>
 
-              {/* CARD 5 — Ingestion (DARK accent) */}
+              {/* CARD 5 — Data import (DARK accent) */}
               <article
                 className="relative col-span-1 flex flex-col gap-4 overflow-hidden rounded-[12px] border border-foreground bg-foreground p-7 text-background sm:col-span-2"
                 data-reveal
                 style={{ ["--reveal-delay" as string]: "60ms" }}
               >
                 <span className="inline-block self-start rounded-full bg-background/10 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-background/70">
-                  Ingestion
+                  Data import
                 </span>
                 <h3 className="font-serif text-[1.5rem] leading-tight tracking-[-0.01em] text-background">
                   Bulk CSV uploads. Locked after generation.
@@ -906,7 +905,7 @@ export default function LandingPage() {
                   stays clean.
                 </p>
                 <div className="mt-3 rounded-[6px] border border-background/10 bg-black/40 p-3 font-mono text-[11px] leading-relaxed text-background/80">
-                  <span style={{ color: "var(--brand)" }}>$</span> ordo ingest
+                  <span style={{ color: "var(--brand)" }}>$</span> ordo import
                   ./roster.csv
                   <br />
                   <span className="text-background/50">→</span> 27,020 rows · 0
@@ -1247,11 +1246,11 @@ export default function LandingPage() {
               style={{ ["--reveal-delay" as string]: "200ms" }}
             >
               <Button
-                render={<a href={entry.href} />}
+                render={<a href={ACCESS_HREF} />}
                 size="lg"
                 variant="inverse"
               >
-                Sign in to the dashboard
+                Request access
                 <ArrowRight data-icon="inline-end" strokeWidth={2.25} />
               </Button>
               <Link
@@ -1331,10 +1330,10 @@ export default function LandingPage() {
                   </li>
                   <li>
                     <a
-                      href={entry.href}
+                      href={ACCESS_HREF}
                       className="hover:text-[color:var(--brand-strong)]"
                     >
-                      Dashboard
+                      Request access
                     </a>
                   </li>
                 </ul>

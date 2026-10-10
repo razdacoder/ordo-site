@@ -1,4 +1,3 @@
-import { InstitutionLogo } from "@/components/institution-logo";
 import { cn } from "@/lib/utils";
 
 /**
@@ -60,26 +59,6 @@ export function Wordmark({
     >
       <Logo size={s.mark} />
       Ordo
-    </span>
-  );
-}
-
-/**
- * Ordo wordmark co-branded with the configured institution logo, separated
- * by a hairline rule. Falls back to the bare wordmark when no institution
- * logo has been uploaded.
- */
-export function BrandLockup({
-  className,
-  size = "md",
-}: {
-  className?: string;
-  size?: keyof typeof WORDMARK_SIZES;
-}) {
-  return (
-    <span className={cn("inline-flex items-center gap-3", className)}>
-      <Wordmark size={size} />
-      <InstitutionLogo size={size === "lg" ? 44 : 30} withDivider />
     </span>
   );
 }

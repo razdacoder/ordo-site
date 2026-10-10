@@ -13,14 +13,13 @@ It's one of three services:
 | API       | `ems-ibr` (Django)      | `api.ordo.app` |
 
 The site only talks to Django from the server, through its public endpoints
-(`/api/system/branding/`, `/api/public/features/`). The browser never calls
+(`/api/public/features/`). The browser never calls
 the API, so the site doesn't need a CORS entry.
 
 ## Environment
 
 | Var       | Required | What |
 | --------- | -------- | ---- |
-| `APP_URL` | yes      | Dashboard origin, used as the "Sign in" target, e.g. `https://ordo.app` |
 | `API_URL` | no       | Django as this server reaches it (can be an internal address). Default `http://localhost:8000` |
 | `PORT`    | no       | Default `3000` in the Docker image |
 
@@ -37,7 +36,7 @@ Run the dashboard on `:3000` and Django on `:8000` alongside it.
 
 ```sh
 docker build -t ordo-site .
-docker run -p 3000:3000 -e APP_URL=https://ordo.app -e API_URL=http://api.internal:8000 ordo-site
+docker run -p 3000:3000 -e API_URL=http://api.internal:8000 ordo-site
 ```
 
 `.github/workflows/docker-publish.yml` pushes the image to GHCR on every push
@@ -45,6 +44,6 @@ to `main`.
 
 ## Shared design
 
-`src/index.css`, `src/components/ui/button.tsx`, `src/components/logo.tsx` and
-`src/lib/brand.ts` are copies of the dashboard's. If you change the design
+`src/index.css`, `src/components/ui/button.tsx` and `src/components/logo.tsx`
+are copies of the dashboard's. If you change the design
 system in one repo, copy the change to the other.

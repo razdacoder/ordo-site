@@ -3,9 +3,9 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 import type { FeatureSummary } from "@/lib/site-api";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { BrandLockup } from "@/components/logo";
+import { Wordmark } from "@/components/logo";
 import { useReveal } from "@/lib/use-reveal";
-import { AuthButton, useAuthEntry } from "@/components/auth-entry";
+import { ACCESS_HREF, RequestAccessButton } from "@/components/request-access";
 
 function PublicHeader() {
   return (
@@ -15,7 +15,7 @@ function PublicHeader() {
           to="/"
           className="flex items-center"
         >
-          <BrandLockup size="lg" />
+          <Wordmark size="lg" />
         </Link>
         <nav className="hidden items-center gap-8 text-[14px] text-muted-foreground md:flex">
           <Link
@@ -34,7 +34,7 @@ function PublicHeader() {
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle iconOnly />
-          <AuthButton size="default" />
+          <RequestAccessButton size="default" />
         </div>
       </div>
     </header>
@@ -42,7 +42,6 @@ function PublicHeader() {
 }
 
 function PublicFooter() {
-  const entry = useAuthEntry();
   return (
     <footer className="border-t border-[color:var(--border)] bg-background">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-8 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground sm:flex-row sm:items-center sm:px-8">
@@ -61,10 +60,10 @@ function PublicFooter() {
             Modules
           </Link>
           <a
-            href={entry.href}
+            href={ACCESS_HREF}
             className="transition-colors hover:text-[color:var(--brand-strong)]"
           >
-            Sign in
+            Request access
           </a>
         </span>
       </div>
@@ -73,7 +72,6 @@ function PublicFooter() {
 }
 
 export default function FeaturesPage({ features }: { features: FeatureSummary[] }) {
-  const entry = useAuthEntry();
   useReveal();
   return (
     <div className="min-h-screen bg-background text-foreground antialiased">
@@ -131,11 +129,11 @@ export default function FeaturesPage({ features }: { features: FeatureSummary[] 
                   className="mt-6 flex items-center gap-4"
                 >
                   <Button
-                    render={<a href={entry.href} />}
+                    render={<a href={ACCESS_HREF} />}
                     variant="brand"
                     size="lg"
                   >
-                    Open the dashboard
+                    Request access
                     <ArrowRight data-icon="inline-end" strokeWidth={2.25} />
                   </Button>
                 </div>
@@ -230,7 +228,7 @@ export default function FeaturesPage({ features }: { features: FeatureSummary[] 
                 Ready when you are
               </p>
               <h2 className="mt-3 max-w-2xl font-serif text-[2.25rem] leading-[1.05] tracking-[-0.015em] sm:text-[2.75rem]">
-                Open the dashboard
+                Get Ordo
                 <span
                   className="italic"
                   style={{
@@ -239,18 +237,18 @@ export default function FeaturesPage({ features }: { features: FeatureSummary[] 
                   }}
                 >
                   {" "}
-                  and start a session.
+                  for your institution.
                 </span>
               </h2>
             </div>
             <Button
-              render={<a href={entry.href} />}
+              render={<a href={ACCESS_HREF} />}
               size="lg"
               variant="inverse"
               data-reveal
               style={{ ["--reveal-delay" as string]: "120ms" }}
             >
-              Sign in
+              Request access
               <ArrowRight data-icon="inline-end" strokeWidth={2.25} />
             </Button>
           </div>

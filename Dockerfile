@@ -1,6 +1,6 @@
 # Ordo marketing site (TanStack Start on Node via Nitro).
-# Runtime env: APP_URL (the dashboard origin, required) and API_URL (Django
-# as this server reaches it). See src/lib/origins.server.ts.
+# Runtime env: API_URL (Django as this server reaches it). See
+# src/lib/site-api.ts.
 
 # pnpm 11 needs Node >= 22.13; corepack installs the version pinned in
 # package.json's "packageManager".

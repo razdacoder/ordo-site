@@ -4,9 +4,9 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import type { Feature } from "@/lib/site-api";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { BrandLockup } from "@/components/logo";
+import { Wordmark } from "@/components/logo";
 import { useReveal } from "@/lib/use-reveal";
-import { AuthButton, useAuthEntry } from "@/components/auth-entry";
+import { ACCESS_HREF, RequestAccessButton } from "@/components/request-access";
 
 function PublicHeader() {
   return (
@@ -16,7 +16,7 @@ function PublicHeader() {
           to="/"
           className="flex items-center"
         >
-          <BrandLockup size="lg" />
+          <Wordmark size="lg" />
         </Link>
         <nav className="hidden items-center gap-8 text-[14px] text-muted-foreground md:flex">
           <Link
@@ -34,7 +34,7 @@ function PublicHeader() {
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle iconOnly />
-          <AuthButton size="default" />
+          <RequestAccessButton size="default" />
         </div>
       </div>
     </header>
@@ -148,7 +148,6 @@ function FeatureShell({ slug, children }: { slug: string; children: ReactNode })
 }
 
 export default function FeatureDetailPage({ feature }: { feature: Feature }) {
-  const entry = useAuthEntry();
   return (
     <FeatureShell slug={feature.slug}>
       <>
@@ -384,11 +383,11 @@ export default function FeatureDetailPage({ feature }: { feature: Feature }) {
                 All modules
               </Button>
               <Button
-                render={<a href={entry.href} />}
+                render={<a href={ACCESS_HREF} />}
                 size="lg"
                 variant="inverse"
               >
-                Sign in
+                Request access
                 <ArrowRight data-icon="inline-end" strokeWidth={2.25} />
               </Button>
             </div>

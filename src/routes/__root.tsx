@@ -4,9 +4,7 @@ import {
   Scripts,
   createRootRoute,
 } from "@tanstack/react-router";
-import { getConfig } from "@/lib/site-api";
 import { ThemeProvider } from "@/lib/theme";
-import { brandCss } from "@/lib/brand";
 import styles from "@/index.css?url";
 
 // Apply the theme before paint to avoid a flash of the wrong palette. Runs
@@ -18,9 +16,6 @@ const THEME_SCRIPT = `(function(){try{var m=document.cookie.match(/(?:^|;\\s*)or
 const ICON_VERSION = "3";
 
 export const Route = createRootRoute({
-  // Dashboard origin + branding, resolved on the server.
-  loader: () => getConfig(),
-  staleTime: Infinity,
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -44,16 +39,12 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
-  const { branding } = Route.useLoaderData();
-  const brand = brandCss(branding?.brand_color);
-
   return (
     // The theme script sets `class`/`style` before hydration.
     <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <HeadContent />
-        {brand && <style dangerouslySetInnerHTML={{ __html: brand }} />}
       </head>
       <body>
         <ThemeProvider>
