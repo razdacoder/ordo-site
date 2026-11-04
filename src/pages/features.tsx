@@ -63,7 +63,7 @@ function PublicFooter() {
             href={ACCESS_HREF}
             className="transition-colors hover:text-[color:var(--brand-strong)]"
           >
-            Request access
+            Book a demo
           </a>
         </span>
       </div>
@@ -133,7 +133,7 @@ export default function FeaturesPage({ features }: { features: FeatureSummary[] 
                     variant="brand"
                     size="lg"
                   >
-                    Request access
+                    Book a demo
                     <ArrowRight data-icon="inline-end" strokeWidth={2.25} />
                   </Button>
                 </div>
@@ -248,7 +248,7 @@ export default function FeaturesPage({ features }: { features: FeatureSummary[] 
               data-reveal
               style={{ ["--reveal-delay" as string]: "120ms" }}
             >
-              Request access
+              Book a demo
               <ArrowRight data-icon="inline-end" strokeWidth={2.25} />
             </Button>
           </div>

@@ -13,7 +13,7 @@ const THEME_SCRIPT = `(function(){try{var m=document.cookie.match(/(?:^|;\\s*)or
 
 // Bump when the icons change: Chrome caches favicons per page URL and will
 // otherwise keep showing (or swap back to) the old one.
-const ICON_VERSION = "3";
+const ICON_VERSION = "4";
 
 export const Route = createRootRoute({
   head: () => ({

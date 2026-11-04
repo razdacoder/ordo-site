@@ -20,7 +20,7 @@ the API, so the site doesn't need a CORS entry.
 
 | Var       | Required | What |
 | --------- | -------- | ---- |
-| `API_URL` | no       | Django as this server reaches it (can be an internal address). Default `http://localhost:8000` |
+| `API_URL` | no       | Django as this server reaches it (can be an internal address). Default `http://api.localhost:8000` (Django picks the public schema by host) |
 | `PORT`    | no       | Default `3000` in the Docker image |
 
 ## Development
@@ -44,6 +44,16 @@ to `main`.
 
 ## Shared design
 
-`src/index.css`, `src/components/ui/button.tsx` and `src/components/logo.tsx`
-are copies of the dashboard's. If you change the design
+The site follows the Ordo design system (`design-system/` in the
+`ordo-system` repo): Outfit, Signal green, square uppercase controls and
+underlined fields. `src/index.css`, `src/components/ui/button.tsx`, `input.tsx`,
+`label.tsx`, `src/components/logo.tsx` (without `BrandLockup`) and
+`public/favicon.svg` are copies of the dashboard's. If you change the design
 system in one repo, copy the change to the other.
+
+## Demo requests
+
+`/demo` (`?kind=setup` or `?kind=question` to preselect) posts to Django's
+`/api/public/demo-requests/` from this server, forwarding the visitor's IP.
+Requests show up in the console under **Requests**, and the platform Owners
+get an email for each one.

@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Wordmark } from "@/components/logo";
 import { useReveal as useSharedReveal } from "@/lib/use-reveal";
-import { ACCESS_HREF, RequestAccessButton } from "@/components/request-access";
+import { ACCESS_HREF, QUESTION_HREF, RequestAccessButton, SETUP_HREF } from "@/components/request-access";
 
 /* -----------------------------------------------------------
  * Ordo — Editorial Landing
@@ -142,7 +142,7 @@ function SeatGridSketch() {
       <text
         x={pad}
         y={14}
-        fontFamily="Outfit Variable, sans-serif"
+        style={{ fontFamily: "var(--font-sans)" }}
         fontSize="7"
         letterSpacing="0.06em"
         fill="var(--muted-foreground)"
@@ -194,7 +194,7 @@ function CalendarSketch() {
     27: "am",
   };
   return (
-    <div className="rounded-md border border-border bg-card p-4">
+    <div className="rounded-[12px] border border-border bg-card p-4">
       <div className="grid grid-cols-6 gap-1 text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
         {days.map((d, i) => (
           <span key={i}>{d}</span>
@@ -505,7 +505,7 @@ export default function LandingPage() {
                     size="lg"
                     variant="brand"
                   >
-                    Request access
+                    Book a demo
                     <ArrowRight data-icon="inline-end" strokeWidth={2.25} />
                   </Button>
                   <Link
@@ -1183,10 +1183,10 @@ export default function LandingPage() {
                 <p className="mt-5 text-[14px] leading-[1.65] text-muted-foreground">
                   Anything missing?{" "}
                   <a
-                    href="mailto:hello@ordo.app"
+                    href={QUESTION_HREF}
                     className="text-foreground underline underline-offset-4 decoration-border hover:decoration-[color:var(--brand)]"
                   >
-                    Write to us
+                    Ask us
                   </a>
                   .
                 </p>
@@ -1250,7 +1250,7 @@ export default function LandingPage() {
                 size="lg"
                 variant="inverse"
               >
-                Request access
+                Book a demo
                 <ArrowRight data-icon="inline-end" strokeWidth={2.25} />
               </Button>
               <Link
@@ -1266,6 +1266,19 @@ export default function LandingPage() {
                   strokeWidth={2.25}
                 />
               </Link>
+              <a
+                href={SETUP_HREF}
+                className="group inline-flex items-center gap-1.5 text-[14px] font-medium"
+                style={{
+                  color: "color-mix(in oklch, var(--brand-foreground) 85%, transparent)",
+                }}
+              >
+                Get help setting up
+                <ArrowRight
+                  className="size-4 transition-transform group-hover:translate-x-0.5"
+                  strokeWidth={2.25}
+                />
+              </a>
             </div>
 
             <div
@@ -1333,7 +1346,15 @@ export default function LandingPage() {
                       href={ACCESS_HREF}
                       className="hover:text-[color:var(--brand-strong)]"
                     >
-                      Request access
+                      Book a demo
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={SETUP_HREF}
+                      className="hover:text-[color:var(--brand-strong)]"
+                    >
+                      Setup help
                     </a>
                   </li>
                 </ul>

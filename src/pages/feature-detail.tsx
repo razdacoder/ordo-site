@@ -387,7 +387,7 @@ export default function FeatureDetailPage({ feature }: { feature: Feature }) {
                 size="lg"
                 variant="inverse"
               >
-                Request access
+                Book a demo
                 <ArrowRight data-icon="inline-end" strokeWidth={2.25} />
               </Button>
             </div>
